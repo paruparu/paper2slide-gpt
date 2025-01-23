@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (
     QMessageBox, QHBoxLayout, QDialog, QFormLayout, QLineEdit
 )
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, pyqtSlot, QTimer
+from PyQt5.QtGui import QIcon
 from dotenv import load_dotenv
 import dotenv
 # 環境変数をここで読み込む
@@ -225,6 +226,9 @@ class TitleEditDialog(QDialog):
 class PDFApp(QWidget):
     def __init__(self):
         super().__init__()
+
+        # アイコンを設定
+        self.setWindowIcon(QIcon('icon.ico'))
 
         load_dotenv(override=True)
         self.output_dir = os.getenv("OUTPUT_DIR", "./output")
@@ -543,6 +547,7 @@ class PDFApp(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon('icon.ico'))  # タスクバーアイコンも設定
     window = PDFApp()
     window.show()
     sys.exit(app.exec_())
