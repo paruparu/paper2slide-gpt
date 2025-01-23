@@ -27,7 +27,10 @@ def get_summary(metadata):
         title = ''.join(title)
 
     text = f"title: {title}\nbody: {metadata.get('abstract', 'N/A')}"
-    response = openai.ChatCompletion.create(
+    
+    # 新しいAPIの使用方法に変更
+    client = openai.OpenAI()
+    response = client.chat.completions.create(
                 model='gpt-4o',
                 messages=[
                     {'role': 'system', 'content': prompt},
@@ -36,7 +39,7 @@ def get_summary(metadata):
                 temperature=0.25,
             )
 
-    summary = response['choices'][0]['message']['content']
+    summary = response.choices[0].message.content
 
     summary_dict = {}
     for line in summary.split('\n'):

@@ -1,4 +1,3 @@
-```markdown
 # paper2slide-gpt
 
 論文（paper）の内容を要約し、スライド（slide）向けにテキスト生成を行うサンプルアプリケーションです。  
